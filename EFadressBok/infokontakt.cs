@@ -19,7 +19,7 @@ namespace EFadressBok
 
         private void infokontakt_Load(object sender, EventArgs e)
         {
-
+            txtId.ReadOnly = true;
         }
 
         private void button1_Click(object sender, EventArgs e)
