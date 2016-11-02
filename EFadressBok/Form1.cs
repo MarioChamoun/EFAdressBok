@@ -140,12 +140,16 @@ namespace EFadressBok
 
         private void btnRadera_Click(object sender, EventArgs e)
         {
-            using(contacts cn = new contacts())
+            if (listBox1.SelectedItem == null) { MessageBox.Show("Du måste markera en kontakt."); }
+            else
             {
-                contacts kontakt = cn.contact.FirstOrDefault(r => r.namn == listBox1.SelectedItem.ToString());
-                cn.contact.Remove(kontakt);
-                cn.SaveChanges();
-                MessageBox.Show("Kontakten har raderats.");
+                using (contacts cn = new contacts())
+                {
+                    contacts kontakt = cn.contact.FirstOrDefault(r => r.namn == listBox1.SelectedItem.ToString());
+                    cn.contact.Remove(kontakt);
+                    cn.SaveChanges();
+                    MessageBox.Show("Kontakten har raderats.");
+                }
             }
         }
 
