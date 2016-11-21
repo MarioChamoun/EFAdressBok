@@ -114,9 +114,6 @@ namespace EFadressBok
 
         private void btnSok_Click(object sender, EventArgs e)
         {
-            if (txtNamnSok.Text == string.Empty) { MessageBox.Show("Fältet ska vara ifyllt för sökningen skall hitta något."); }
-            else
-            {
                 listBox1.Items.Clear();
                 using (contacts cn = new contacts())
                 {
@@ -129,20 +126,21 @@ namespace EFadressBok
                     }
                 }
             }
-        }
 
         private void btnInfo_Click(object sender, EventArgs e)
         {
-            getinfo(false);
-            
+            try{
+                getinfo(false);
+            } catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
        }
         
 
         private void btnRadera_Click(object sender, EventArgs e)
         {
-            if (listBox1.SelectedItem == null) { MessageBox.Show("Du måste markera en kontakt."); }
-            else
-            {
+            try {
                 using (contacts cn = new contacts())
                 {
                     contacts kontakt = cn.contact.FirstOrDefault(r => r.namn == listBox1.SelectedItem.ToString());
@@ -150,12 +148,21 @@ namespace EFadressBok
                     cn.SaveChanges();
                     MessageBox.Show("Kontakten har raderats.");
                 }
+            } catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            getinfo(true);            
+            try
+            {
+                getinfo(true);
+            } catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }           
         }
     }
 }
