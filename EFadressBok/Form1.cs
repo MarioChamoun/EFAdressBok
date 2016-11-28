@@ -17,6 +17,7 @@ namespace EFadressBok
         {
             InitializeComponent();
         }
+        List<kontakter> con = new List<kontakter>();
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -27,10 +28,15 @@ namespace EFadressBok
         {
             infokontakt form = new infokontakt();
             form.button1.Visible = false;
+
             using (contacts cn = new contacts())
             {
+
+                var id = con[listBox1.SelectedIndex].contactId;
+
+
                 var kontakt = from c in cn.contact
-                              where c.namn == listBox1.SelectedItem.ToString()
+                              where c.contactId == id
                               select new
                               {
                                   c.contactId,
@@ -115,15 +121,17 @@ namespace EFadressBok
         private void btnSok_Click(object sender, EventArgs e)
         {
                 listBox1.Items.Clear();
-                using (contacts cn = new contacts())
-                {
-                    var kontakt = from c in cn.contact
-                                  where c.namn.StartsWith(txtNamnSok.Text)
-                                  select c.namn;
+            using (contacts cn = new contacts())
+            {
+                var kontakt = from c in cn.contact
+                              where c.namn.StartsWith(txtNamnSok.Text)
+                              select c;
+
                     foreach (var namn in kontakt)
-                    {
-                        listBox1.Items.Add(namn.ToString());
-                    }
+                {
+                    listBox1.Items.Add(namn.namn);
+                    con.Add(new kontakter {namn = namn.namn,contactId = namn.contactId });
+                }
                 }
             }
 
@@ -143,7 +151,8 @@ namespace EFadressBok
             try {
                 using (contacts cn = new contacts())
                 {
-                    contacts kontakt = cn.contact.FirstOrDefault(r => r.namn == listBox1.SelectedItem.ToString());
+                    var id = con[listBox1.SelectedIndex].contactId;
+                    contacts kontakt = cn.contact.FirstOrDefault(r => r.contactId == id);
                     cn.contact.Remove(kontakt);
                     cn.SaveChanges();
                     MessageBox.Show("Kontakten har raderats.");

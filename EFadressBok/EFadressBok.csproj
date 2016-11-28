@@ -68,6 +68,7 @@
     <Compile Include="infokontakt.Designer.cs">
       <DependentUpon>infokontakt.cs</DependentUpon>
     </Compile>
+    <Compile Include="kontakter.cs" />
     <Compile Include="Migrations\201610252212120_contact.cs" />
     <Compile Include="Migrations\201610252212120_contact.Designer.cs">
       <DependentUpon>201610252212120_contact.cs</DependentUpon>
@@ -83,6 +84,10 @@
     <Compile Include="Migrations\201610301244474_dateformat.cs" />
     <Compile Include="Migrations\201610301244474_dateformat.Designer.cs">
       <DependentUpon>201610301244474_dateformat.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611281345142_myig.cs" />
+    <Compile Include="Migrations\201611281345142_myig.Designer.cs">
+      <DependentUpon>201611281345142_myig.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Program.cs" />
@@ -104,6 +109,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201610301244474_dateformat.resx">
       <DependentUpon>201610301244474_dateformat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611281345142_myig.resx">
+      <DependentUpon>201611281345142_myig.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
