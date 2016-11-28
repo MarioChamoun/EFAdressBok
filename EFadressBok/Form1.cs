@@ -120,6 +120,7 @@ namespace EFadressBok
 
         private void btnSok_Click(object sender, EventArgs e)
         {
+            con.Clear();
                 listBox1.Items.Clear();
             using (contacts cn = new contacts())
             {
